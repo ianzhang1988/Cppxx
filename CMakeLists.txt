@@ -36,4 +36,12 @@ foreach( sourcefile ${APP_SOURCES} )
     set_target_properties(${file} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
     # file(RENAME ${CMAKE_BINARY_DIR}/${file} ${CMAKE_CURRENT_SOURCE_DIR}/bin/)
     # target_link_libraries( ${file} ndn-cxx boost_system )
+    if( ${file} MATCHES "concurrency" )
+        MESSAGE( STATUS "add lib ${file}")
+        target_link_libraries(${file} pthread atomic)
+    # elseif(<condition>) # optional block, can be repeated
+      # <commands>
+    # else()              # optional block
+      # <commands>
+    endif()
 endforeach( sourcefile ${APP_SOURCES} )
